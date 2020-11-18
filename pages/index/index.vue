@@ -10,17 +10,17 @@
 		<!-- bottom -->
 		<view class="cu-bar tabbar bg-black my-bottom">
 			<view style="height: 100rpx;background: #FFFFFF;"></view>
-			<view class="action " :class="[this.activeBar==1?'text-orange':'text-gray']" @click="changeBar(1)">
+			<view class="action " :class="[activeBar==1?'text-orange':'text-gray']" @click="changeBar(1)">
 				<view class="cuIcon-homefill"></view> 首页
 			</view>
-			<view class="action " :class="[this.activeBar==2?'text-orange':'text-gray']" @click="changeBar(2)">
+			<view class="action " :class="[activeBar==2?'text-orange':'text-gray']" @click="changeBar(2)">
 				<view class="cuIcon-questionfill"></view> 问卷
 			</view>
-			<view class="action " :class="[this.activeBar==3?'text-orange':'text-gray']" @click="changeBar(3)">
+			<view class="action " :class="[activeBar==3?'text-orange':'text-gray']" @click="changeBar(3)">
 				<view class="cuIcon-send"></view>
 				图书
 			</view>
-			<view class="action " :class="[this.activeBar==4?'text-orange':'text-gray']" @click="changeBar(4)">
+			<view class="action " :class="[activeBar==4?'text-orange':'text-gray']" @click="changeBar(4)">
 				<view class="cuIcon-my">
 					<view class="cu-tag badge"></view>
 				</view>
@@ -45,7 +45,10 @@
 		data() {
 			return {
 				title: 'Hello',
-				activeBar:1
+				activeBar:1,
+				barName:[
+					'首页','问卷','图书','我的'
+				]
 			}
 		},
 		onLoad() {
@@ -53,7 +56,11 @@
 		},
 		methods: {
 			changeBar(index){
+				console.log('chanhge bar');
 				this.activeBar=index;
+				uni.setNavigationBarTitle({
+				　　title:this.barName[index-1]
+				})
 			}
 		}
 	}
