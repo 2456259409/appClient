@@ -1,0 +1,26 @@
+
+.btn-submit.data-v-49c35a26{
+	margin: 0 auto;
+	width: 20%;
+	background: #0081FF;
+	color: #FFFFFF;
+	height: 80rpx;
+	line-height: 200%;
+	margin-top: 100rpx;
+}
+uni-page-wrapper.data-v-49c35a26 {
+	width: 100%;
+	height: 100%;
+	background: #FFFFFF;
+}
+uni-page-body.data-v-49c35a26 {
+	width: 100%;
+	height: 100%;
+	background: #FFFFFF;
+}
+.content.data-v-49c35a26 {
+	background: #FFFFFF;
+	min-height: 100%;
+	padding-bottom: 50rpx;
+}
+

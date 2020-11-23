@@ -1,4 +1,9 @@
 {
   "navigationBarTitleText": "首页",
-  "usingComponents": {}
+  "usingComponents": {
+    "book-page": "/components/book-page",
+    "index-page": "/components/index-page",
+    "mine-page": "/components/mine-page",
+    "question-page": "/components/question-page"
+  }
 }
