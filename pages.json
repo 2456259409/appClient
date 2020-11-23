@@ -6,7 +6,14 @@
 				"navigationBarTitleText": "首页"
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/fill-question-page/fill-question-page",
+            "style" : {
+				"navigationBarBackgroundColor":"#00C7FE",
+				"navigationBarTextStyle":"white"
+			}
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
