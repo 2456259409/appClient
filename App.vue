@@ -21,4 +21,12 @@
 		width: 50rpx;
 		height: 50rpx;
 	}
+
+    uni-radio::before{
+        margin-top: -8px;
+        left: 4.5rpx;
+        /*距离顶部*/
+        font-size: 40rpx;
+        /*勾勾大小*/
+    }
 </style>
