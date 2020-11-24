@@ -1,7 +1,6 @@
 var baseUrl='http://127.0.0.1:8888';
 
 async function ApiCall(method,url,data,header){
-	console.log('进入请求了')
 	let [error,res] = await uni.request({
 		method:method,
 	    url: baseUrl+url, //仅为示例，并非真实接口地址。
@@ -20,6 +19,29 @@ async function ApiCall(method,url,data,header){
 	}
 	return res.data;
 }
+
+async function ApiJsonCall(method,url,data,header){
+	console.log(JSON.stringify(data),'任建');
+	let [error,res] = await uni.request({
+		method:method,
+	    url: baseUrl+url, //仅为示例，并非真实接口地址。
+	    data: data,
+	    header: {
+			token:'16<->9wvq4y8zpqidzq6',
+			type:'client'
+	    }
+	})
+	if(res.data.code<200||res.data.code>=300){
+		let msg = res.data.msg
+		uni.showModal({
+			title:'警告',
+			content:'出现网络错误:'+msg
+		})
+	}
+	return res.data;
+}
+
+
 
 function dateFormat(fmt, date) {
 	// console.log('-->',date,'<--')
@@ -48,5 +70,6 @@ function dateFormat(fmt, date) {
 
 module.exports={
 	ApiCall:ApiCall,
-	dateFormat:dateFormat
+	dateFormat:dateFormat,
+	ApiJsonCall:ApiJsonCall
 }

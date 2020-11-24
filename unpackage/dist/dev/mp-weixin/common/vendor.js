@@ -8576,15 +8576,14 @@ if (hadRuntime) {
 
 /* WEBPACK VAR INJECTION */(function(uni) {var _regeneratorRuntime = __webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 25);function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(n);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}function _iterableToArrayLimit(arr, i) {if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var baseUrl = 'http://127.0.0.1:8888';function
 
-ApiCall(_x, _x2, _x3, _x4) {return _ApiCall.apply(this, arguments);}function _ApiCall() {_ApiCall = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee(method, url, data, header) {var _yield$uni$request, _yield$uni$request2, error, res, msg;return _regeneratorRuntime.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
-            console.log('进入请求了');_context.next = 3;return (
+ApiCall(_x, _x2, _x3, _x4) {return _ApiCall.apply(this, arguments);}function _ApiCall() {_ApiCall = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee(method, url, data, header) {var _yield$uni$request, _yield$uni$request2, error, res, msg;return _regeneratorRuntime.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
               uni.request({
                 method: method,
                 url: baseUrl + url, //仅为示例，并非真实接口地址。
                 data: data,
                 header: {
                   token: '16<->9wvq4y8zpqidzq6',
-                  type: 'client' } }));case 3:_yield$uni$request = _context.sent;_yield$uni$request2 = _slicedToArray(_yield$uni$request, 2);error = _yield$uni$request2[0];res = _yield$uni$request2[1];
+                  type: 'client' } }));case 2:_yield$uni$request = _context.sent;_yield$uni$request2 = _slicedToArray(_yield$uni$request, 2);error = _yield$uni$request2[0];res = _yield$uni$request2[1];
 
 
             if (res.data.code < 200 || res.data.code >= 300) {
@@ -8594,7 +8593,30 @@ ApiCall(_x, _x2, _x3, _x4) {return _ApiCall.apply(this, arguments);}function _Ap
                 content: '出现网络错误:' + msg });
 
             }return _context.abrupt("return",
-            res.data);case 9:case "end":return _context.stop();}}}, _callee);}));return _ApiCall.apply(this, arguments);}
+            res.data);case 8:case "end":return _context.stop();}}}, _callee);}));return _ApiCall.apply(this, arguments);}function
+
+
+ApiJsonCall(_x5, _x6, _x7, _x8) {return _ApiJsonCall.apply(this, arguments);}function _ApiJsonCall() {_ApiJsonCall = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2(method, url, data, header) {var _yield$uni$request3, _yield$uni$request4, error, res, msg;return _regeneratorRuntime.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+            console.log(JSON.stringify(data), '任建');_context2.next = 3;return (
+              uni.request({
+                method: method,
+                url: baseUrl + url, //仅为示例，并非真实接口地址。
+                data: data,
+                header: {
+                  token: '16<->9wvq4y8zpqidzq6',
+                  type: 'client' } }));case 3:_yield$uni$request3 = _context2.sent;_yield$uni$request4 = _slicedToArray(_yield$uni$request3, 2);error = _yield$uni$request4[0];res = _yield$uni$request4[1];
+
+
+            if (res.data.code < 200 || res.data.code >= 300) {
+              msg = res.data.msg;
+              uni.showModal({
+                title: '警告',
+                content: '出现网络错误:' + msg });
+
+            }return _context2.abrupt("return",
+            res.data);case 9:case "end":return _context2.stop();}}}, _callee2);}));return _ApiJsonCall.apply(this, arguments);}
+
+
 
 
 function dateFormat(fmt, date) {
@@ -8624,7 +8646,8 @@ function dateFormat(fmt, date) {
 
 module.exports = {
   ApiCall: ApiCall,
-  dateFormat: dateFormat };
+  dateFormat: dateFormat,
+  ApiJsonCall: ApiJsonCall };
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ })

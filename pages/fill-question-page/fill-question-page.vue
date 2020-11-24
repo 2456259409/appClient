@@ -63,13 +63,15 @@
 					this.results.push({
 						questionId:item.id,
 						content:'',
-						type:3
+						type:3,
+						name:item.title
 					})
 				}else{
 					this.results.push({
 						questionId:item.id,
 						codes:[],
-						type:item.code
+						type:item.code,
+						name:item.title
 					})
 				}
 			});
@@ -83,8 +85,23 @@
 			})
 		},
 		methods: {
-			submitAnswer(){
+			async submitAnswer(){
 				console.log(this.results,'任建');
+				for(let i=0;i<this.results.length;i++){
+					let result=this.results[i];
+					result.codesJson=JSON.stringify(result.codes);
+					if(result.type===3&&(result.content===''||result.content===null)){
+						this.results.splice(i--,1);
+						continue;
+					}
+					else if(result.type!=3&&result.codes.length==0){
+						this.results.splice(i--,1);
+						continue;
+					}
+				}
+				let data =await Api.ApiJsonCall('post','/api/paper/submit_paper',this.results);
+				
+				// console.log(this.results,'大侠饶命')
 			},
 			changeRadio(item,type){
 				//console.log(type,'type');

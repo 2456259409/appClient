@@ -218,13 +218,15 @@ var _api = _interopRequireDefault(__webpack_require__(/*! ../../common/api.js */
                   _this.results.push({
                     questionId: item.id,
                     content: '',
-                    type: 3 });
+                    type: 3,
+                    name: item.title });
 
                 } else {
                   _this.results.push({
                     questionId: item.id,
                     codes: [],
-                    type: item.code });
+                    type: item.code,
+                    name: item.title });
 
                 }
               });
@@ -238,8 +240,23 @@ var _api = _interopRequireDefault(__webpack_require__(/*! ../../common/api.js */
 
   },
   methods: {
-    submitAnswer: function submitAnswer() {
-      console.log(this.results, '任建');
+    submitAnswer: function submitAnswer() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var i, result, data;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+                console.log(_this2.results, '任建');
+                i = 0;case 2:if (!(i < _this2.results.length)) {_context2.next = 16;break;}
+                result = _this2.results[i];
+                result.codesJson = JSON.stringify(result.codes);if (!(
+                result.type === 3 && (result.content === '' || result.content === null))) {_context2.next = 10;break;}
+                _this2.results.splice(i--, 1);return _context2.abrupt("continue", 13);case 10:if (!(
+
+
+                result.type != 3 && result.codes.length == 0)) {_context2.next = 13;break;}
+                _this2.results.splice(i--, 1);return _context2.abrupt("continue", 13);case 13:i++;_context2.next = 2;break;case 16:_context2.next = 18;return (
+
+
+
+                  _api.default.ApiJsonCall('post', '/api/paper/submit_paper', _this2.results));case 18:data = _context2.sent;case 19:case "end":return _context2.stop();}}}, _callee2);}))();
+
+
     },
     changeRadio: function changeRadio(item, type) {
       //console.log(type,'type');
