@@ -1,4 +1,8 @@
 
+.content.data-v-76225a4c{
+	min-height: 100%;
+	background: #FFFFFF;
+}
 .my-bottom.data-v-76225a4c{
 	position: fixed;
 	left: 0;

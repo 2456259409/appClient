@@ -8,21 +8,23 @@
   },
   "compileType": "miniprogram",
   "libVersion": "2.9.2",
-  "appid": "touristappid",
-  "projectname": "question",
-  "simulatorType": "wechat",
-  "simulatorPluginLibVersion": {},
+  "appid": "wxee69c0bad5d9f318",
+  "projectname": "剑神学习",
   "condition": {
     "search": {
+      "current": -1,
       "list": []
     },
     "conversation": {
+      "current": -1,
       "list": []
     },
     "game": {
+      "current": -1,
       "list": []
     },
     "miniprogram": {
+      "current": -1,
       "list": []
     }
   }

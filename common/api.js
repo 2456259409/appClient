@@ -1,5 +1,11 @@
-var baseUrl='http://127.0.0.1:8888';
-
+var baseUrl;
+var userInfo;
+if(process.env.NODE_ENV === 'development'){  
+	baseUrl='http://127.0.0.1:8888';
+    console.log('开发环境')  
+}else{
+	baseUrl='http://cqrjccnu.cn';
+}
 async function ApiCall(method,url,data,header){
 	let [error,res] = await uni.request({
 		method:method,
@@ -21,7 +27,6 @@ async function ApiCall(method,url,data,header){
 }
 
 async function ApiJsonCall(method,url,data,header){
-	console.log(JSON.stringify(data),'任建');
 	let [error,res] = await uni.request({
 		method:method,
 	    url: baseUrl+url, //仅为示例，并非真实接口地址。

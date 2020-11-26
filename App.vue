@@ -23,10 +23,25 @@
 	}
 
     uni-radio::before{
-        margin-top: -8px;
-        left: 4.5rpx;
-        /*距离顶部*/
-        font-size: 40rpx;
-        /*勾勾大小*/
+		/* #ifdef MP-WEIXIN */
+		margin-top: -8px;
+		left: 4.5rpx;
+		/*距离顶部*/
+		font-size: 40rpx;
+		/* #endif */
+        
     }
+	/* #ifdef H5 */
+	.cuIcon-favorfill::before{
+		margin-top: 0px;
+		left: 4.5rpx;
+		/*距离顶部*/
+		font-size: 5rpx;
+	}
+	/* #endif */
+	
+	page{
+		min-height: 100%;
+		background: #FFFFFF;
+	}
 </style>

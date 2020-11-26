@@ -67,6 +67,10 @@
 </script>
 
 <style scoped>
+	.content{
+		min-height: 100%;
+		background: #FFFFFF;
+	}
 	.my-bottom{
 		position: fixed;
 		left: 0;

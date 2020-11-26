@@ -218,6 +218,7 @@ var _api = _interopRequireDefault(__webpack_require__(/*! ../../common/api.js */
                   _this.results.push({
                     questionId: item.id,
                     content: '',
+                    userId: 16,
                     type: 3,
                     name: item.title });
 
@@ -225,6 +226,7 @@ var _api = _interopRequireDefault(__webpack_require__(/*! ../../common/api.js */
                   _this.results.push({
                     questionId: item.id,
                     codes: [],
+                    userId: 16,
                     type: item.code,
                     name: item.title });
 
@@ -254,10 +256,20 @@ var _api = _interopRequireDefault(__webpack_require__(/*! ../../common/api.js */
 
 
 
-                  _api.default.ApiJsonCall('post', '/api/paper/submit_paper', _this2.results));case 18:data = _context2.sent;case 19:case "end":return _context2.stop();}}}, _callee2);}))();
+                  _api.default.ApiJsonCall('post', '/api/paper/submit_paper', _this2.results));case 18:data = _context2.sent;
+                console.log(data, '大侠来了');
+                if (data.code === 200) {
+                  uni.showModal({
+                    title: '消息提示',
+                    content: '提交成功!' });
 
-
-    },
+                  _this2.results.forEach(function (item, index) {
+                    item.content = '';
+                    item.codes = [];
+                  });
+                }
+                // console.log(this.results,'大侠饶命')
+              case 21:case "end":return _context2.stop();}}}, _callee2);}))();},
     changeRadio: function changeRadio(item, type) {
       //console.log(type,'type');
       var questionId = parseInt(item.split(':')[0]);
