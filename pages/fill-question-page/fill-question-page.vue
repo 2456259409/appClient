@@ -63,6 +63,7 @@
 					this.results.push({
 						questionId:item.id,
 						content:'',
+						userId:16,
 						type:3,
 						name:item.title
 					})
@@ -70,6 +71,7 @@
 					this.results.push({
 						questionId:item.id,
 						codes:[],
+						userId:16,
 						type:item.code,
 						name:item.title
 					})
@@ -100,7 +102,17 @@
 					}
 				}
 				let data =await Api.ApiJsonCall('post','/api/paper/submit_paper',this.results);
-				
+				console.log(data,'大侠来了')
+				if(data.code===200){
+					uni.showModal({
+					    title: '消息提示',
+					    content: '提交成功!',
+					});
+					this.results.forEach((item,index)=>{
+						item.content='';
+						item.codes=[];
+					});
+				}
 				// console.log(this.results,'大侠饶命')
 			},
 			changeRadio(item,type){
