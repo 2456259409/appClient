@@ -13,6 +13,12 @@
 				"navigationBarTextStyle":"white"
 			}
         }
+        ,{
+            "path" : "pages/book-detail/book-detail",
+            "style" : {
+				"navigationStyle":"custom"
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

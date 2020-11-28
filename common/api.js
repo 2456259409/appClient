@@ -1,8 +1,8 @@
 var baseUrl;
 var userInfo;
 if(process.env.NODE_ENV === 'development'){  
-	//baseUrl='http://192.168.43.97:8888';
-	baseUrl='http://cqrjccnu.cn';
+	baseUrl='http://127.0.0.1:8888';
+	//baseUrl='http://cqrjccnu.cn';
     console.log('开发环境')  
 }else{
 	baseUrl='http://cqrjccnu.cn';
@@ -17,7 +17,7 @@ async function ApiCall(method,url,data,header){
 			type:'client'
 	    }
 	})
-	console.log(res)
+	// console.log(res)
 	if(res.data.code<200||res.data.code>=300){
 		let msg = res.data.msg
 		uni.showModal({
