@@ -15,11 +15,11 @@
 		<!-- #endif -->
 		<view class="books-all">
 			<view v-for="(item,index) in books" :key="index" :class="[index%2==0?'marginToLeft':'marginToRight']"
-			style="width: 50%;margin: 30rpx 0;">
+			style="width: 50%;margin: 30rpx 0;" @click="toBookDetail(item.id)">
 				<view class="book-one">
 					<image :src="item.icon"
 					style="width: 250rpx;height: 300rpx;"></image>
-					<text>{{item.bookName}}</text>
+					<text style="font-size: 35rpx;">{{item.bookName}}</text>
 				</view>
 			</view>
 		</view>
@@ -37,6 +37,11 @@
 			};
 		},
 		methods:{
+			toBookDetail(bookId){
+				uni.navigateTo({
+					url:'/pages/book-detail/book-detail?id='+bookId
+				})
+			},
 			async searchBook(){
 				let data = await Api.ApiCall('get','/api/book/get_client_books',{pageSize:10,pageNum:0,keyword:this.keyword});
 				this.books=data.data;
