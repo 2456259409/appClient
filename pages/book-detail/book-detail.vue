@@ -81,7 +81,7 @@
 			</view>
 		</view>
 		<view class="bottom-class">
-				<button class="cu-btn round" :class="[!isAdded?'bg-red':'bg-grey']" @click="changeAdded">加入书架</button>
+				<button class="cu-btn round" :class="[!isAdded?'bg-red':'bg-grey']" @click="changeAdded">借阅本书</button>
 				<button class="cu-btn round bg-red"  @tap="showModel">立即阅读</button>
 		</view>
 	</view>

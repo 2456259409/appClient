@@ -2,8 +2,8 @@ var baseUrl;
 var userInfo;
 if(process.env.NODE_ENV === 'development'){  
 	//baseUrl='http://192.168.43.97:8888';
-	//baseUrl='http://127.0.0.1:8888';
-	baseUrl='http://cqrjccnu.cn';
+	baseUrl='http://127.0.0.1:8888';
+	// baseUrl='http://cqrjccnu.cn';
     console.log('开发环境')  
 }else{
 	baseUrl='http://cqrjccnu.cn';
@@ -73,10 +73,26 @@ function dateFormat(fmt, date) {
 	};
 	return fmt;
 }
+function getUserInfo(){
+	let user = uni.getStorageSync('userInfo');
+	// console.log(user,'renjian的user')
+	if(user!=null){
+		userInfo=user;
+	}
+	return userInfo;
+}
+
+function setUserStorage(userInfo){
+	if(userInfo){
+		uni.setStorageSync('userInfo',userInfo);
+	}
+}
 
 
 
 module.exports={
+	setUserStorage:setUserStorage,
+	getUserInfo:getUserInfo,
 	ApiCall:ApiCall,
 	dateFormat:dateFormat,
 	ApiJsonCall:ApiJsonCall
