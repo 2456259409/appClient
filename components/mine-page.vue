@@ -13,19 +13,19 @@
 			<view class="detail-info-class">
 				<view class="about-data-class">
 					<view class="info-item-class">
-						<text style="font-weight: bold;">{{user.articleCount}}</text>
-						<text style="color: #989898;">帖子</text>
+						<text style="font-weight: bold;">20</text>
+						<text style="color: #989898;">浏览</text>
 					</view>
 					<view class="info-item-class">
-						<text style="font-weight: bold;">{{user.fansCount}}</text>
-						<text style="color: #989898;">粉丝</text>
+						<text style="font-weight: bold;">15</text>
+						<text style="color: #989898;">评论</text>
 					</view>
 					<view class="info-item-class">
-						<text style="font-weight: bold;">{{user.followCount}}</text>
-						<text style="color: #989898;">已关注</text>
+						<text style="font-weight: bold;">{{user.borrowCount}}</text>
+						<text style="color: #989898;">已借阅</text>
 					</view>
 				</view>
-				<button class="cu-btn lg" style="height: 50upx;margin-top: 20upx;color: #282828;background: #FFFFFF;border: 1upx solid #EEEEEE;font-weight: bold;">编辑主页</button>
+				<button @click="changeToEdit" class="cu-btn lg" style="height: 50upx;margin-top: 20upx;color: #282828;background: #FFFFFF;border: 1upx solid #EEEEEE;font-weight: bold;">编辑主页</button>
 			</view>
 		</view>
 		
@@ -41,7 +41,23 @@
 				staticIcon:'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg'
 			};
 		},
+		activated() {
+			if(this.userInfo!=null&&this.userInfo!=''){
+				return;
+			}
+			let user = Api.getUserInfo();
+			if(!user){
+				uni.navigateTo({
+					url:'/pages/login/login'
+				})
+				return;
+			}else{
+				// console.log(user);
+				this.user=user;
+			}
+		},
 		beforeMount(){
+			console.log('beforeMonted')
 			let user = Api.getUserInfo();
 			if(!user){
 				uni.navigateTo({
@@ -54,6 +70,13 @@
 			}
 		},
 		created() {
+		},
+		methods:{
+			changeToEdit(){
+				uni.navigateTo({
+					url:'/pages/edit-userInfo/edit-userInfo'
+				})
+			}
 		}
 	}
 </script>
@@ -91,7 +114,7 @@
 		flex-direction: column;
 		margin-left: 80upx;
 		width: 50%;
-		margin-top: 60rpx;
+		margin-top: 40rpx;
 	}
 	.about-data-class{
 		display: flex;

@@ -27,6 +27,10 @@
             "path" : "pages/register/register",
             "style" : {}
         }
+        ,{
+            "path" : "pages/edit-userInfo/edit-userInfo",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

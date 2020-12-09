@@ -37,6 +37,7 @@
 					console.log(data);
 					// Api.setUserStorage(data.data);
 					if(data.code>=200&&data.code<300){
+						console.log('登录成功');
 						uni.showModal({
 						    title: '提示',
 						    content: '登录成功'
