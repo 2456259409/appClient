@@ -31,6 +31,12 @@
             "path" : "pages/edit-userInfo/edit-userInfo",
             "style" : {}
         }
+        ,{
+            "path" : "pages/borrow-books/borrow-books",
+            "style" : {
+				"navigationBarTitleText":"借阅列表"
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

@@ -20,7 +20,7 @@
 						<text style="font-weight: bold;">15</text>
 						<text style="color: #989898;">评论</text>
 					</view>
-					<view class="info-item-class">
+					<view class="info-item-class" @click="toMyBorrowBooks">
 						<text style="font-weight: bold;">{{user.borrowCount}}</text>
 						<text style="color: #989898;">已借阅</text>
 					</view>
@@ -72,6 +72,11 @@
 		created() {
 		},
 		methods:{
+			toMyBorrowBooks(){
+				uni.navigateTo({
+					url:'/pages/borrow-books/borrow-books'
+				})
+			},
 			changeToEdit(){
 				uni.navigateTo({
 					url:'/pages/edit-userInfo/edit-userInfo'
