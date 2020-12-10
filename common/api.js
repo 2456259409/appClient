@@ -1,49 +1,49 @@
 var baseUrl;
 var userInfo;
-if(process.env.NODE_ENV === 'development'){  
+if (process.env.NODE_ENV === 'development') {
 	//baseUrl='http://192.168.43.97:8888';
-	baseUrl='http://127.0.0.1:8888';
+	baseUrl = 'http://127.0.0.1:8888';
 	// baseUrl='http://cqrjccnu.cn';
-    console.log('开发环境')  
-}else{
-	baseUrl='http://cqrjccnu.cn';
+	console.log('开发环境')
+} else {
+	baseUrl = 'http://cqrjccnu.cn';
 }
-async function ApiCall(method,url,data,header){
-	let [error,res] = await uni.request({
-		method:method,
-	    url: baseUrl+url, //仅为示例，并非真实接口地址。
-	    data: data,
-	    header: {
-			token:'16<->9wvq4y8zpqidzq6',
-			type:'client'
-	    }
+async function ApiCall(method, url, data, header) {
+	let [error, res] = await uni.request({
+		method: method,
+		url: baseUrl + url, //仅为示例，并非真实接口地址。
+		data: data,
+		header: {
+			token: '16<->9wvq4y8zpqidzq6',
+			type: 'client'
+		}
 	})
 	// console.log(res)
-	if(res.data.code<200||res.data.code>=300){
+	if (res.data.code < 200 || res.data.code >= 300) {
 		let msg = res.data.msg
 		uni.showModal({
-			title:'警告',
-			content:'出现网络错误:'+msg
+			title: '警告',
+			content: '出现网络错误:' + msg
 		})
 	}
 	return res.data;
 }
 
-async function ApiJsonCall(method,url,data,header){
-	let [error,res] = await uni.request({
-		method:method,
-	    url: baseUrl+url, //仅为示例，并非真实接口地址。
-	    data: data,
-	    header: {
-			token:'16<->9wvq4y8zpqidzq6',
-			type:'client'
-	    }
+async function ApiJsonCall(method, url, data, header) {
+	let [error, res] = await uni.request({
+		method: method,
+		url: baseUrl + url, //仅为示例，并非真实接口地址。
+		data: data,
+		header: {
+			token: '16<->9wvq4y8zpqidzq6',
+			type: 'client'
+		}
 	})
-	if(res.data.code<200||res.data.code>=300){
+	if (res.data.code < 200 || res.data.code >= 300) {
 		let msg = res.data.msg
 		uni.showModal({
-			title:'警告',
-			content:'出现网络错误:'+msg
+			title: '警告',
+			content: '出现网络错误:' + msg
 		})
 	}
 	return res.data;
@@ -54,7 +54,7 @@ async function ApiJsonCall(method,url,data,header){
 function dateFormat(fmt, date) {
 	// console.log('-->',date,'<--')
 	// let dat=new date(dat);
-	date=new Date(date);
+	date = new Date(date);
 	let ret;
 	const opt = {
 		"Y+": date.getFullYear().toString(), // 年
@@ -73,27 +73,36 @@ function dateFormat(fmt, date) {
 	};
 	return fmt;
 }
-function getUserInfo(){
+
+function getUserInfo() {
 	let user = uni.getStorageSync('userInfo');
 	// console.log(user,'renjian的user')
-	if(user!=null){
-		userInfo=user;
+	if (user != null) {
+		userInfo = user;
 	}
 	return userInfo;
 }
 
-function setUserStorage(userInfo){
-	if(userInfo){
-		uni.setStorageSync('userInfo',userInfo);
+function setUserStorage(userInfo) {
+	if (userInfo) {
+		uni.setStorageSync('userInfo', userInfo);
+	}
+}
+
+function updateCount(count) {
+	if (count) {
+		userInfo.borrowCount = count;
+		uni.setStorageSync('userInfo', userInfo);
 	}
 }
 
 
 
-module.exports={
-	setUserStorage:setUserStorage,
-	getUserInfo:getUserInfo,
-	ApiCall:ApiCall,
-	dateFormat:dateFormat,
-	ApiJsonCall:ApiJsonCall
+module.exports = {
+	updateCount: updateCount,
+	setUserStorage: setUserStorage,
+	getUserInfo: getUserInfo,
+	ApiCall: ApiCall,
+	dateFormat: dateFormat,
+	ApiJsonCall: ApiJsonCall
 }

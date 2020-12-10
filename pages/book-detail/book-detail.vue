@@ -81,7 +81,7 @@
 			</view>
 		</view>
 		<view class="bottom-class">
-				<button class="cu-btn round" :class="[!isAdded?'bg-red':'bg-grey']" @click="changeAdded">借阅本书</button>
+				<button class="cu-btn round" :class="[!isAdded?'bg-red':'bg-grey']" @click="borrowBook">借阅本书</button>
 				<button class="cu-btn round bg-red"  @tap="showModel">立即阅读</button>
 		</view>
 	</view>
@@ -92,6 +92,7 @@
 	export default {
 		data() {
 			return {
+				userInfo:'',
 				isShow:false,
 				isAdded:false,
 				book: {},
@@ -115,21 +116,44 @@
 			}
 		},
 		async onLoad(opt) {
+			let user=Api.getUserInfo();
+			if(!user){
+				uni.navigateTo({
+					url:'/pages/login/login'
+				})
+				return;
+			}else{
+				// console.log(user);
+				this.userInfo=user;
+			}
 			// console.log(opt.id,'任建书籍的id');
 			let data = await Api.ApiCall('get', '/api/book/get_one_book/' + opt.id);
-			console.log('书籍', data);
+			// console.log('书籍', data);
 			this.book = data.data;
 			this.book.types = [];
 			let types = [];
 			types = JSON.parse(this.book.strTypes);
-			types.forEach((item,index)=>{
-				for(let i=0;i<this.types.length;i++){
-					if(item===this.types[i].id){
-						this.book.types.push(this.types[i]);
-						break;
+			if(types){
+				types.forEach((item,index)=>{
+					for(let i=0;i<this.types.length;i++){
+						if(item===this.types[i].id){
+							this.book.types.push(this.types[i]);
+							break;
+						}
 					}
-				}
-			})
+				});
+			}
+			
+			let resultCheck=await Api.ApiCall('get','/api/book/check_book',{
+				userId:this.userInfo.id,
+				bookId:this.book.id,
+				status:0
+			});
+			// console.log(typeof(resultCheck.data),'测试返回')
+			if(resultCheck.data==1){
+				this.isAdded=true;
+			}
+			
 			
 		},
 		methods: {
@@ -138,6 +162,41 @@
 			},
 			showModel(){
 				this.isShow=!this.isShow;
+			},
+			async borrowBook(){
+				if(this.isAdded){
+					uni.showModal({
+						title:'提示',
+						content:'本书已借阅，还未归还'
+					})
+					return;
+				}
+				this.isAdded=true;
+				let borrowTime=new Date().getTime();
+				let returnTime=borrowTime+1000*60*60*24*30;
+				let param={
+					userId:this.userInfo.id,
+					bookId:this.book.id,
+					bookName:this.book.bookName,
+					borrowTime:borrowTime,
+					returnTime:returnTime,
+					borrowCount:this.userInfo.borrowCount+1,
+					status:0
+				}
+				let data =await Api.ApiCall('post','/api/book/borrow_book',param)
+				if(data.code==500){
+					uni.showModal({
+						title:'提示',
+						content:'借阅失败，该书已被你借阅，还未归还.'
+					})
+				}else{
+					uni.showModal({
+						title:'提示',
+						content:'借阅成功'
+					});
+					Api.updateCount(param.borrowCount);
+				}
+				
 			},
 			changeAdded(){
 				this.isAdded=true;
