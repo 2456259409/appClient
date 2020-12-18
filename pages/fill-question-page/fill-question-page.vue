@@ -61,6 +61,7 @@
 			paper.question.forEach((item,index)=>{
 				if(item.type===3){
 					this.results.push({
+						paperId:paper.id,
 						questionId:item.id,
 						content:'',
 						userId:16,
@@ -69,6 +70,7 @@
 					})
 				}else{
 					this.results.push({
+						paperId:paper.id,
 						questionId:item.id,
 						codes:[],
 						userId:16,

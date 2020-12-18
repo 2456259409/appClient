@@ -108,5 +108,9 @@
     },
     "uniStatistics" : {
         "enable" : false
+    },
+    "h5" : {
+        "title" : "剑神学习",
+        "domain" : "http://cqrjccnu.cn"
     }
 }
